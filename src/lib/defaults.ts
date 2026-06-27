@@ -9,6 +9,10 @@ export const defaultProfile: Profile = {
   email: "hello@example.com",
   github_url: "https://github.com",
   linkedin_url: "https://linkedin.com",
+  avatar_url: "",
+  contact_label: "연락하기",
+  github_label: "GitHub",
+  linkedin_label: "LinkedIn",
 };
 
 export const defaultProjects: Project[] = [
@@ -20,6 +24,9 @@ export const defaultProjects: Project[] = [
     tags: ["Next.js", "Supabase", "Tailwind CSS"],
     url: "",
     repo_url: "",
+    image_url: "",
+    url_label: "사이트 보기",
+    repo_label: "코드 보기",
     featured: true,
     sort_order: 1,
   },
@@ -31,6 +38,9 @@ export const defaultProjects: Project[] = [
     tags: ["UI", "Responsive", "Portfolio"],
     url: "",
     repo_url: "",
+    image_url: "",
+    url_label: "사이트 보기",
+    repo_label: "코드 보기",
     featured: true,
     sort_order: 2,
   },
@@ -44,6 +54,8 @@ export const defaultPosts: Post[] = [
     excerpt: "관리자 페이지에서 이 글을 수정하거나 새 글을 추가할 수 있습니다.",
     content:
       "이곳에는 포트폴리오 작업 과정, 배운 점, 프로젝트 회고 등을 자유롭게 작성할 수 있습니다.\n\nSupabase 환경 변수를 연결하면 관리자 로그인 후 실제 데이터베이스에 저장됩니다.",
+    image_url: "",
+    featured: true,
     published: true,
     published_at: new Date().toISOString(),
   },

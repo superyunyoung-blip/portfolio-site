@@ -14,7 +14,7 @@ npm run dev
 ## Supabase 연결
 
 1. [Supabase](https://supabase.com)에서 새 프로젝트를 만듭니다.
-2. `supabase/schema.sql`을 열고 `your-email@example.com`을 실제 관리자 이메일로 바꿉니다.
+2. `supabase/schema.sql`을 열고 관리자 이메일이 맞는지 확인합니다.
 3. Supabase SQL Editor에서 수정한 SQL을 실행합니다.
 4. Supabase Authentication에서 같은 이메일의 사용자를 만들고 비밀번호를 설정합니다.
 5. `.env.example`을 참고해 `.env.local`을 만듭니다.
@@ -25,7 +25,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 NEXT_PUBLIC_ADMIN_EMAIL=your-email@example.com
 ```
 
-`/admin`에서 로그인하면 소개, 프로젝트, 글을 추가하거나 삭제할 수 있습니다.
+`/admin`에서 로그인하면 소개, 프로필 사진, 프로젝트, 글, 대표 이미지를 관리할 수 있습니다.
+
+이미지 업로드를 사용하려면 `supabase/schema.sql`을 다시 실행해 `portfolio-images` Storage 버킷과 이미지 컬럼을 만들어야 합니다.
 
 ## GitHub와 Vercel 무료 배포
 
