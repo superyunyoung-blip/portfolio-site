@@ -23,7 +23,10 @@ export default async function Home() {
         </Link>
         <nav className="flex w-full flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[#7c658d] sm:w-auto">
           <Link href="/grow-game" className="hover:text-[#3f2a56]">
-            게임
+            키우기 게임
+          </Link>
+          <Link href="/watermelon-game" className="hover:text-[#3f2a56]">
+            수박 게임
           </Link>
           <Link href="/projects" className="hover:text-[#3f2a56]">
             프로젝트
@@ -58,6 +61,12 @@ export default async function Home() {
                 className="rounded-full bg-[#ff8fb8] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#f06f9f]"
               >
                 키우기 게임하기
+              </Link>
+              <Link
+                href="/watermelon-game"
+                className="rounded-full bg-[#74d99f] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#48c47d]"
+              >
+                수박 게임하기
               </Link>
               <a
                 href={`mailto:${profile.email}`}

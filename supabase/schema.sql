@@ -4,7 +4,7 @@ returns boolean
 language sql
 stable
 as $$
-  select auth.jwt() ->> 'email' = 'superyunyoung@gmail.com';
+  select lower(auth.jwt() ->> 'email') = lower('superyunyoung@gmail.com');
 $$;
 
 create table if not exists public.profiles (
@@ -433,12 +433,19 @@ create table if not exists public.game_progress (
   primary key (user_id, character_id)
 );
 
+create table if not exists public.watermelon_game_config (
+  id text primary key default 'main' check (id = 'main'),
+  stages jsonb not null default '[]'::jsonb,
+  updated_at timestamptz not null default now()
+);
+
 alter table public.game_content enable row level security;
 alter table public.game_characters enable row level security;
 alter table public.game_character_specials enable row level security;
 alter table public.game_character_talk_events enable row level security;
 alter table public.game_user_state enable row level security;
 alter table public.game_progress enable row level security;
+alter table public.watermelon_game_config enable row level security;
 
 drop policy if exists "Public can read game content" on public.game_content;
 create policy "Public can read game content"
@@ -516,6 +523,17 @@ on public.game_progress for update
 using (auth.uid() = user_id)
 with check (auth.uid() = user_id);
 
+drop policy if exists "Public can read watermelon game config" on public.watermelon_game_config;
+create policy "Public can read watermelon game config"
+on public.watermelon_game_config for select
+using (true);
+
+drop policy if exists "Admin can manage watermelon game config" on public.watermelon_game_config;
+create policy "Admin can manage watermelon game config"
+on public.watermelon_game_config for all
+using (public.is_admin())
+with check (public.is_admin());
+
 drop policy if exists "Public can read game images" on storage.objects;
 create policy "Public can read game images"
 on storage.objects for select
@@ -539,6 +557,10 @@ using (bucket_id = 'game-images' and public.is_admin());
 
 insert into public.game_content (id, background_url)
 values ('main', '')
+on conflict (id) do nothing;
+
+insert into public.watermelon_game_config (id, stages)
+values ('main', '[]'::jsonb)
 on conflict (id) do nothing;
 
 insert into public.game_characters (
